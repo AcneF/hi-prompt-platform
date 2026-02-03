@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
-import { Heart, Eye, Calendar, Plus, Edit, Tag } from 'lucide-react'
+import { Heart, Eye, Plus, Edit, Tag } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 interface Prompt {

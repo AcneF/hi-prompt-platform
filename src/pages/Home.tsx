@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
-import { Heart, Eye, Calendar, Tag, ArrowRight, Search, Filter, X } from 'lucide-react'
+import { Heart, Eye, Tag, ArrowRight, Search, Filter, X } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 interface Prompt {
@@ -270,7 +270,7 @@ const Home: React.FC = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-animation">
-            {prompts.map((prompt, index) => (
+            {prompts.map((prompt) => (
             <div
               key={prompt.id}
               onClick={() => handlePromptClick(prompt)}
