@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { User, Session } from '@supabase/supabase-js'
-import { supabase } from '../lib/supabase'
+import { supabase, isSupabaseConfigured } from '../lib/supabase'
 
 interface AuthContextType {
   user: User | null
@@ -27,10 +27,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // 如果 Supabase 未配置，直接设置为未加载状态
+    if (!isSupabaseConfigured()) {
+      setLoading(false)
+      return
+    }
+
     // 获取初始会话
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
       setUser(session?.user ?? null)
+      setLoading(false)
+    }).catch((error) => {
+      console.error('Failed to get session:', error)
       setLoading(false)
     })
 
@@ -47,6 +56,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [])
 
   const signUp = async (email: string, password: string, fullName?: string) => {
+    if (!isSupabaseConfigured()) {
+      return { error: new Error('Supabase not configured') }
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -70,6 +83,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const signIn = async (email: string, password: string) => {
+    if (!isSupabaseConfigured()) {
+      return { error: new Error('Supabase not configured') }
+    }
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -78,6 +95,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const signOut = async () => {
+    if (!isSupabaseConfigured()) {
+      return { error: new Error('Supabase not configured') }
+    }
+
     const { error } = await supabase.auth.signOut()
     return { error }
   }
