@@ -75,14 +75,22 @@ const EnvCheck: React.FC = () => {
             <li>添加以下环境变量：
               <div style={{ 
                 backgroundColor: '#f8f9fa', 
-                padding: '10px', 
+                padding: '15px', 
                 borderRadius: '4px',
                 marginTop: '10px',
                 fontFamily: 'monospace',
-                fontSize: '14px'
+                fontSize: '12px',
+                wordBreak: 'break-all',
+                lineHeight: '1.4'
               }}>
-                VITE_SUPABASE_URL=https://eozvjqiyiszopnrgxpnm.supabase.co<br/>
-                VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                <div style={{ marginBottom: '10px' }}>
+                  <strong>变量名：</strong> VITE_SUPABASE_URL<br/>
+                  <strong>变量值：</strong> https://eozvjqiyiszopnrgxpnm.supabase.co
+                </div>
+                <div>
+                  <strong>变量名：</strong> VITE_SUPABASE_ANON_KEY<br/>
+                  <strong>变量值：</strong> eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvenZqcWl5aXN6b3Bucmd4cG5tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAwMzk0ODMsImV4cCI6MjA4NTYxNTQ4M30.-9-CpM2BsdUtWPtLcM1GN4bdc2vRNXv3gUJI31qNlVA
+                </div>
               </div>
             </li>
             <li>点击 <strong>Redeploy</strong> 重新部署</li>
