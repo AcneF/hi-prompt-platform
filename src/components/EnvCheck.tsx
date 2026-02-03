@@ -112,5 +112,3 @@ const EnvCheck: React.FC = () => {
 }
 
 export default EnvCheck
-
-export default EnvCheck
