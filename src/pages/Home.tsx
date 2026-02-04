@@ -180,10 +180,13 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div>
-              <div className="magazine-card p-8">
+              <div 
+                className="magazine-card p-8 cursor-pointer hover:shadow-lg transition-all duration-200"
+                onClick={() => handlePromptClick(featuredPrompt)}
+              >
                 <div className="flex justify-between items-start mb-6">
                   <div>
-                    <h3 className="font-display text-3xl font-semibold text-primary mb-2">
+                    <h3 className="font-display text-3xl font-semibold text-primary mb-2 hover:text-accent transition-colors">
                       {featuredPrompt.title}
                     </h3>
                     <p className="font-body text-neutral mb-4">
@@ -210,13 +213,10 @@ const Home: React.FC = () => {
                       {formatDate(featuredPrompt.created_at)}
                     </span>
                   </div>
-                  <Link 
-                    to={`/prompt/${featuredPrompt.id}`}
-                    className="font-ui text-sm font-medium text-accent hover:text-primary transition-colors uppercase tracking-wide flex items-center space-x-2"
-                  >
+                  <div className="font-ui text-sm font-medium text-accent hover:text-primary transition-colors uppercase tracking-wide flex items-center space-x-2">
                     <span>Read More</span>
                     <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>
